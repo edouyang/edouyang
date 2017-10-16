@@ -1,0 +1,37 @@
+#coding:utf-8
+import matplotlib.pyplot as plt
+plt.rcParams['font.sans-serif']=['SimHei'] #用来正常显示中文标签
+plt.rcParams['axes.unicode_minus']=False #用来正常显示负号
+
+import pandas as pd
+import numpy as np
+
+import seaborn as sns
+from matplotlib.font_manager import FontProperties
+import matplotlib
+#matplotlib.matplotlib_fname()
+#font = FontProperties(fname=r"c:\windows\fonts\simsun.ttc",size=14)
+
+from pandas import read_csv
+data = read_csv("C:/Users/Eddie/fintech_tutorial/dataset/forheatmapexposureweighted.csv",
+                encoding='utf-8',header=None)
+data = np.array(data)
+industry = ['价值','成长','质量','动量',
+                    '技术','规模']
+
+df = pd.DataFrame(data,index=None,columns=industry)
+#display(data)
+#matplotlib.use('qt4agg')
+#指定默认字体
+#matplotlib.rcParams['font.family']='sans-serif'
+#解决负号'-'显示为方块的问题
+#matplotlib.rcParams['axes.unicode_minus'] = False
+
+sns.heatmap(df,annot=False)
+
+plt.title('风格因子配置')
+plt.xlabel('风格因子')
+plt.ylabel('月')
+
+plt.savefig("C:/Users/Eddie/Desktop/factor2.png",dpi=6000)
+plt.show()

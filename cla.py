@@ -9,19 +9,18 @@ from fintech_analysis import Reader
 if __name__ == "__main__":
     r = Reader()
 
-    for i in range(765):
-        files = ['./dataset/daily/{}.csv'.format(i)]
+    for i in range(5):
+        files = ['./dataset/monthly/{}.csv'.format(i)]
         r.set_files(files)
-        x_train, y_train = r.read(input_cols=range(2, 13),
-                                  output_cols=[1],
-                                  )
-        x_train, y_train = r.get_time_window_dataset(step=10)
+        x_train, y_train = r.read(input_cols=range(2, 39),
+                                  output_cols=[1])
+        x_train, y_train = r.get_time_window_dataset(step=1)
         y_train = r.change_to_one_hot(y_train)
         #
         x_train = x_train.reshape(-1, x_train.shape[1], x_train.shape[2], 1)
         print(x_train.shape)
         print(y_train.shape)
-
+        print(y_train)
         model = FeatureExtractClassificationModel(batch_input_shape=(None, x_train.shape[1], x_train.shape[2], 1),
                                                   class_num=y_train.shape[1])
         model.summary()

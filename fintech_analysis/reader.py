@@ -60,12 +60,14 @@ class Reader(object):
         x_train_2 = []
         y_train_2 = []
 
-        for i in range(len(self.x_train) - step):
+        for i in range(len(self.x_train)):
+        #for i in range(len(self.x_train)-temp):
             img = []
             for s in range(step):
                 img.append(self.x_train[i + s])
             x_train_2.append(img)
-            y_train_2.append(self.y_train[i + step])
+            y_train_2.append(self.y_train[i + s])
+            #y_train_2.append(self.y_train[i+step])
 
         self.x_train_2 = np.array(x_train_2)
         self.y_train_2 = np.array(y_train_2)

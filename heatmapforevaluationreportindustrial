@@ -1,0 +1,38 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+from matplotlib.font_manager import FontProperties
+import matplotlib
+matplotlib.matplotlib_fname()
+font = FontProperties(fname=r"c:\windows\fonts\msyh.ttc",
+                        size=14)
+
+from pandas import read_csv
+data = read_csv("C:/Users/Eddie/fintech_tutorial/dataset/forheatmat.csv",
+                encoding='utf-8',header=None)
+data = np.array(data)
+industry = ['农林牧渔','采掘','化工','钢铁',
+                    '有色金属','电子','家用电器','食品饮料',
+                    '纺织服装','轻工制造','医药生物','公用事业',
+                    '交通运输','房地产','商业贸易','休闲服务',
+                    '综合','建筑材料','建筑装饰','电气设备',
+                    '国防军工','计算机','传媒','通信','银行',
+                    '非银金融','汽车','机械设备']
+
+df = pd.DataFrame(data[169:209],index=None,columns=industry)
+
+#matplotlib.use('qt4agg')
+#指定默认字体
+#matplotlib.rcParams['font.family']='sans-serif'
+#解决负号'-'显示为方块的问题
+#matplotlib.rcParams['axes.unicode_minus'] = False
+
+sns.heatmap(df,annot=False)
+
+plt.title('行业轮动配置效果')
+plt.xlabel('行业')
+plt.ylabel('周')
+
+plt.savefig("C:/Users/Eddie/Desktop/15.png")
+plt.show()

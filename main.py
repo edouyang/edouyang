@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-from fintech_analysis import WeightsVeiwer
+from fintech_analysis import view_weight
 from fintech_analysis import Analyzer
 
 
